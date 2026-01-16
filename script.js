@@ -2,8 +2,8 @@ let  tasks = [];
 
 function addTask (){
     const taskName = document.getElementById("taskName").value;
-    const  category = document.getElementById("category").value;
-    const  deadline = document.getElementById("deadline").value;
+    const category = document.getElementById("category").value;
+    const deadline = document.getElementById("deadline").value;
     const status = document.getElementById("status").value;
     
     if (!taskName || !category ||!deadline) {
@@ -17,9 +17,9 @@ function addTask (){
         status};
 
     tasks.push(task);
-    saveTasks();
+    //saveTasks();
    displayTasks();
-   alert("test");
+  
 
 
    let dropdown
@@ -34,31 +34,50 @@ function displayTasks(){
         let taskName = document.createElement("p");
         let category = document.createElement("p");
         let deadline = document.createElement("p");
-        
-        let status = document.createElement("option");
-
-        if (status == "In Progress"){
-
-        }
+        //let dropdown = document.createElement("select");
+        let status = document.createElement("select");
+                
         taskName.innerHTML = task.taskName;
         category.innerHTML = task.category;
         deadline.innerHTML = task.deadline;
         
+        //status
+        let statuses = ["In Progress", "Completed", "Overdue"]
+
+        statuses.forEach(status =>{
+            let option = document.createElement("option");
+            option.value = status;
+            status.innerHTML = task.status;
+
+            // if(task.status == status){
+            //     option.selected = true;
+            // }
+            
+            //status.append(option);
+
+        } );
+        
+        // status.addEventListener("change",() =>{
+        //     task.status = status.value;
+        //     localStorage.setItem("tasks",JSON.stringify(tasks));
+        // });
         li.append(taskName);
         li.append(category);
         li.append(deadline);
+        li.append(status);
 
         list.append(li);
+     
         
 
     });
 
 }
 
-function saveTasks (){
+// function saveTasks (){
 
-    list =document.getElementById("li")
-    tasks.forEach(task => {
-        list.
-    });
-}
+//     list =document.getElementById("li");
+//     tasks.forEach(task => {
+       
+//     });
+// }
