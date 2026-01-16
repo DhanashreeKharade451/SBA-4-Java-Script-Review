@@ -11,41 +11,54 @@ function addTask (){
         return;
     }
 
-    const task = {taskName, category, deadline, status};
+    const task = {taskName, 
+        category, 
+        deadline, 
+        status};
+
     tasks.push(task);
-    console.dir(tasks);
+    saveTasks();
+   displayTasks();
+   alert("test");
+
+
+   let dropdown
+    
 }
 
-function displayTask(){
+function displayTasks(){
+    const list = document.getElementById("taskList");
 
-    const taskList = getElementById(taskList);
-    taskList.innerHTML = "";
+    tasks.forEach(task => {
+        let li = document.createElement("li");
+        let taskName = document.createElement("p");
+        let category = document.createElement("p");
+        let deadline = document.createElement("p");
+        
+        let status = document.createElement("option");
 
-    tasks.forEach((task,index) => {
+        if (status == "In Progress"){
 
-        console.log(tasks.taskName);
+        }
+        taskName.innerHTML = task.taskName;
+        category.innerHTML = task.category;
+        deadline.innerHTML = task.deadline;
+        
+        li.append(taskName);
+        li.append(category);
+        li.append(deadline);
 
-    //     let overdue = checkOverdue(task);
-    //     let statusText = overdue ? "Overdue" :task.status;
+        list.append(li);
+        
 
-    //     taskList.innerHTML +=
-    //     <tr>
-    //         <td>${task.taskName}</td>
-    //         <td>${task.category}</td>
-    //         <td>${task.deadline}</td>
-    //         <td class name {
-    //             constructor(parameters) {
-                    
-    //             }
-    //         } {
-    //             constructor(parameters) {
-                    
-    //             }
-    //         }></td>
-            
-    //     </tr>
     });
 
+}
 
+function saveTasks (){
 
+    list =document.getElementById("li")
+    tasks.forEach(task => {
+        list.
+    });
 }

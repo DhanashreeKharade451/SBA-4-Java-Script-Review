@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -19,6 +20,14 @@
     </select>
 
     <button onclick="addTask()">Add Task</button>
+
+    <label >Filter Tasks:</label>
+    <select  id="filter" onchange="filterTasks()">
+        <option value="All">All</option>
+        <option value="Completed">Completed</option>
+        <option value="In Ptogress">In Progress</option>
+        <option value="Overdue">Overdue</option>
+    </select>
 
     <br>
     <ul id="taskList"></ul>
