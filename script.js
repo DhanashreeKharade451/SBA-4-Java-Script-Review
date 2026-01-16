@@ -93,16 +93,25 @@ function filterTasks(){
 
     if(filterValue == "ALL"){
         displayTasks();
-    }
+    }else 
+    if(filterValue == "Completed"){
+        //displayTasks(tasks.category = "completed");
+        displayTasks().tasks.category = "completed";
 
         const filtered = tasks.filter(task => task.status == filterValue);
         displayTasks(filtered);
-    }
+    }else if(filterValue == "In Ptogress"){
+        displayTasks(tasks.category = "In Ptogress");
 
-//}
+}else{
+    
+}
+
+
+}
 
 function saveTasks(){
-
+    localStorage.setItem("tasks",JSON.stringify(tasks));
 }
 // function saveTasks (){
 
