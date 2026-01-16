@@ -93,13 +93,13 @@ function filterTasks(){
 
     if(filterValue == "ALL"){
         displayTasks();
-    }else{
+    }
 
         const filtered = tasks.filter(task => task.status == filterValue);
         displayTasks(filtered);
     }
 
-}
+//}
 
 function saveTasks(){
 
