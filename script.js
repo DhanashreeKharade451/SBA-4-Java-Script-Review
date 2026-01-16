@@ -19,15 +19,18 @@ function addTask (){
     tasks.push(task);
     //saveTasks();
    displayTasks();
-  
 
+   //clear inputs after adding task
 
-   let dropdown
+   document.getElementById("taskName").value = "";
+   document.getElementById("catagory").value = "";
+   document.getElementById("deadline").value = "";
     
 }
 
 function displayTasks(){
     const list = document.getElementById("taskList");
+    list.innerHTML = ""; //clear list before adding value
 
     tasks.forEach(task => {
         let li = document.createElement("li");
@@ -71,6 +74,19 @@ function displayTasks(){
         
 
     });
+
+}
+
+function filterTask(){
+    const filterValue = document.getElementById("filter").value;
+
+    if(filterValue == "ALL"){
+        displayTasks();
+    }else{
+
+        const filtered = tasks.filter(task => task.status == filterValue);
+        displayTasks(filtered);
+    }
 
 }
 
