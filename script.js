@@ -11,28 +11,34 @@ function addTask (){
         return;
     }
 
-    const task = {taskName, 
+    const task = {
+        taskName, 
         category, 
         deadline, 
-        status};
+        status
+    };
 
     tasks.push(task);
-    //saveTasks();
-   displayTasks();
+    saveTasks();
+    displayTasks();
 
    //clear inputs after adding task
 
    document.getElementById("taskName").value = "";
-   document.getElementById("catagory").value = "";
+   document.getElementById("category").value = "";
    document.getElementById("deadline").value = "";
     
 }
 
-function displayTasks(){
+function displayTasks(filterTasks = tasks){
     const list = document.getElementById("taskList");
     list.innerHTML = ""; //clear list before adding value
 
     tasks.forEach(task => {
+
+        if(new Date(task.deadline) < new Date() && task.status != "Completed"){
+            task.status = Overdue;
+        }
         let li = document.createElement("li");
         let taskName = document.createElement("p");
         let category = document.createElement("p");
@@ -47,19 +53,24 @@ function displayTasks(){
         //status
         let statuses = ["In Progress", "Completed", "Overdue"]
 
-        statuses.forEach(status =>{
+        statuses.forEach(s =>{
             let option = document.createElement("option");
-            option.value = status;
-            status.innerHTML = task.status;
+            option.value = s;
+            option.innerHTML = s;
 
-            // if(task.status == status){
-            //     option.selected = true;
-            // }
+            if(task.status == s){
+                option.selected = true;
+            }
             
-            //status.append(option);
+            status.appendChild(option);
 
         } );
         
+        status.addEventListener("Change", () =>{
+            tasks[index].status = status.value;
+            saveTasks();
+            displayTasks();
+        } );
         // status.addEventListener("change",() =>{
         //     task.status = status.value;
         //     localStorage.setItem("tasks",JSON.stringify(tasks));
@@ -77,7 +88,7 @@ function displayTasks(){
 
 }
 
-function filterTask(){
+function filterTasks(){
     const filterValue = document.getElementById("filter").value;
 
     if(filterValue == "ALL"){
@@ -90,6 +101,9 @@ function filterTask(){
 
 }
 
+function saveTasks(){
+
+}
 // function saveTasks (){
 
 //     list =document.getElementById("li");
