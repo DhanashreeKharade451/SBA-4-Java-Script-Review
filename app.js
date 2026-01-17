@@ -41,14 +41,14 @@ function addTask (){
     
 }
 
-function displayTasks(){
+function displayTasks(filtered = tasks){
     const list = document.getElementById("taskList");
     list.innerHTML = ""; //clear list before adding value
 
-    tasks.forEach(task => {
+    filtered.forEach((task,index) => {
 
         if(new Date(task.deadline) < new Date() && task.status != "Completed"){
-            task.status = Overdue;
+            task.status = "Overdue";
         }
         let li = document.createElement("li");
         let taskName = document.createElement("p");
@@ -56,10 +56,12 @@ function displayTasks(){
         let deadline = document.createElement("p");
         //let dropdown = document.createElement("select");
         let status = document.createElement("select");
+        
                 
         taskName.innerHTML = task.taskName;
         category.innerHTML = task.category;
         deadline.innerHTML = task.deadline;
+        
         
         //status
         let statuses = ["In Progress", "Completed", "Overdue"]
@@ -77,7 +79,7 @@ function displayTasks(){
 
         } );
         
-        status.addEventListener("Change", () =>{
+        status.addEventListener("change", () =>{
             tasks[index].status = status.value;
             saveTasks();
             displayTasks();
@@ -93,22 +95,29 @@ function displayTasks(){
 
         list.append(li);
      
-        
-
     });
-
+    
+    saveTasks();
 }
 
 function filterTasks(){
+
+    tasks.forEach(task => {
+        if(new Date(task.deadline) < new Date() && task.status !== "Completed"){
+            task.status = "Overdue";
+        }
+    });
+    
     const filterValue = document.getElementById("filter").value;
 
     if(filterValue == "ALL"){
         displayTasks();
-    }
+    }else{
 
         const filtered = tasks.filter(task => task.status == filterValue);
         displayTasks(filtered);
     }
+}
 
 function saveTasks(){
     localStorage.setItem("tasks", JSON.stringify(tasks));
