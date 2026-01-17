@@ -102,12 +102,6 @@ function displayTasks(filtered = tasks){
 
 function filterTasks(){
 
-    tasks.forEach(task => {
-        if(new Date(task.deadline) < new Date() && task.status !== "Completed"){
-            task.status = "Overdue";
-        }
-    });
-    
     const filterValue = document.getElementById("filter").value;
 
     if(filterValue == "ALL"){
