@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="app.js" defer></script>
 </head>
 <body>
 
-    <div>
+    
         <h2>Task Management</h2>
-    </div>
-    <div id="tsk">
+ 
 
     <input type="text" id="taskName" placeholder="Task Name">
     <input type="text" id="category" placeholder="category">
@@ -21,9 +20,8 @@
     <select id="status">
         <option value="In Progress">In Progress </option>
         <option value="Completed">Completed</option>
-        <option value="Overdue">Overdue</option>
     </select>
-
+    <br>
     <button onclick="addTask()">Add Task</button>
 
     <label >Filter Tasks:</label>
@@ -31,12 +29,12 @@
         <option value="All">All</option>
         <option value="Completed">Completed</option>
         <option value="In Ptogress">In Progress</option>
-        <option value="Overdue">Overdue</option>
+        <option value="overdue">Overdue</option>
     </select>
 
     <br>
     <ul id="taskList"></ul>
 
-    </div>
+   
 </body>
 </html>

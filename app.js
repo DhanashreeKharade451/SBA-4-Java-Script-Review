@@ -1,10 +1,21 @@
+
 let  tasks = [];
+
+window.onload = () => {
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+        tasks = JSON.parse(savedTasks);
+        displayTasks();
+    }
+};
+
 
 function addTask (){
     const taskName = document.getElementById("taskName").value;
     const category = document.getElementById("category").value;
     const deadline = document.getElementById("deadline").value;
     const status = document.getElementById("status").value;
+    
     
     if (!taskName || !category ||!deadline) {
         alert ("please fill all fields");
@@ -30,7 +41,7 @@ function addTask (){
     
 }
 
-function displayTasks(filterTasks = tasks){
+function displayTasks(){
     const list = document.getElementById("taskList");
     list.innerHTML = ""; //clear list before adding value
 
@@ -93,25 +104,15 @@ function filterTasks(){
 
     if(filterValue == "ALL"){
         displayTasks();
-    }else 
-    if(filterValue == "Completed"){
-        //displayTasks(tasks.category = "completed");
-        displayTasks().tasks.category = "completed";
+    }
 
         const filtered = tasks.filter(task => task.status == filterValue);
         displayTasks(filtered);
-    }else if(filterValue == "In Ptogress"){
-        displayTasks(tasks.category = "In Ptogress");
-
-}else{
-    
-}
-
-
-}
+    }
 
 function saveTasks(){
-    localStorage.setItem("tasks",JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
 }
 // function saveTasks (){
 
